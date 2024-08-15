@@ -16,9 +16,11 @@ def main():
 
             df = process_data_file.process_data_table(df)
 
-            header_data, field_names, footer_data = final_file_creation.main_template(folder_path)
+            batch_number = final_file_creation.batch_counter(folder_path)
 
-            final_file_creation.file_creation(header_data,field_names,footer_data, df, folder_path)
+            header_data, field_names, footer_data = final_file_creation.main_template(folder_path, df, batch_number)
+
+            final_file_creation.file_creation(header_data,field_names,footer_data, df, folder_path, batch_number)
 
     
     print('done')
