@@ -31,7 +31,7 @@ def batch_counter(file_path):
 
 
 def get_current_date():
-    return datetime.now().strftime('%Y%m%d')
+    return datetime.now().strftime('%y%m%d')
 
 def create_dataframe(data, columns=None):
     return pd.DataFrame([data], columns=columns)
@@ -39,8 +39,9 @@ def create_dataframe(data, columns=None):
 def write_to_excel(writer, df, start_row):
     df.to_excel(writer, index=False, header=False, startrow=start_row)
 
-def new_file_name():
-    return f'To_CYB_Batch__{get_current_date()}.xlsx'
+def new_file_name(folder_path):
+    batch_count = batch_counter(os.path.join(folder_path, 'batch_count.txt'))
+    return f'To_CYB_Batch_{batch_count}_{get_current_date()}.xlsx'
 
 def get_creation_date():
     return datetime.now().strftime('%Y-%m-%d')
@@ -81,7 +82,9 @@ def main_template(folder_path):
 
 def file_creation(header_data, field_names, footer_data, df, folder_path):
 
-    save_file_path = os.path.join(folder_path, new_file_name())
+    name = new_file_name(folder_path)
+
+    save_file_path = os.path.join(folder_path, name)
 
 
     # Create DataFrames
