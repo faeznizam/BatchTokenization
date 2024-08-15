@@ -6,7 +6,8 @@ import os
 
 # Helper Functions
 
-def batch_counter(file_path):
+def batch_counter(folder_path):
+    file_path = os.path.join(folder_path, 'batch_count.txt')
     current_date = datetime.now().strftime('%Y-%m-%d')
     
     if os.path.exists(file_path):
@@ -39,9 +40,9 @@ def create_dataframe(data, columns=None):
 def write_to_excel(writer, df, start_row):
     df.to_excel(writer, index=False, header=False, startrow=start_row)
 
-def new_file_name(folder_path):
-    batch_count = batch_counter(os.path.join(folder_path, 'batch_count.txt'))
-    return f'To_CYB_Batch_{batch_count}_{get_current_date()}.xlsx'
+def new_file_name(folder_path, batch_number):
+    
+    return f'To_CYB_Batch_{batch_number}_{get_current_date()}.xlsx'
 
 def get_creation_date():
     return datetime.now().strftime('%Y-%m-%d')
@@ -51,16 +52,18 @@ def get_creation_date():
 
     
 
-def main_template(folder_path):
-    file_path = os.path.join(folder_path, 'batch_count.txt')
+def main_template(folder_path,df,batch_number):
+    
+
+    
 
 
     # Data Definitions
     header_data = {
         'merchant_id': 'merchantID=unicef_malaysia',
-        'batch_id': f'batchID={get_current_date()}{batch_counter(file_path)}',
+        'batch_id': f'batchID={get_current_date()}{batch_number}',
         'creation_date': f'creationDate={get_creation_date()}',
-        'record_count': 'recordCount=1',
+        'record_count': f'recordCount={len(df)}',
         'template': 'Template=custom',
         'reference': 'reference=MY',
         'status_email': 'statusEmail=processing-mly@unicef.org',
@@ -80,9 +83,9 @@ def main_template(folder_path):
 
     return header_data, field_names, footer_data
 
-def file_creation(header_data, field_names, footer_data, df, folder_path):
-
-    name = new_file_name(folder_path)
+def file_creation(header_data, field_names, footer_data, df, folder_path, batch_number):
+    
+    name = new_file_name(folder_path, batch_number)
 
     save_file_path = os.path.join(folder_path, name)
 
