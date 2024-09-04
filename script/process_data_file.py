@@ -42,7 +42,7 @@ def copy_data_into_table(new_df, df):
     new_df['card_expirationYear'] = df['Expiry Year']
     new_df['card_cardType'] = df['Payment Submethod']
     new_df['purchaseTotals_currency'] = 'MYR'
-    new_df['merchantReferenceCode']	 = df['National Id']
+    new_df['merchantReferenceCode']	 = df['Mobile Phone']
     new_df['purchaseTotals_grandTotalAmount'] = '0'
     new_df['recurringSubscriptionInfo_amount'] = '0'
     new_df['recurringSubscriptionInfo_frequency'] = 'on-demand'
