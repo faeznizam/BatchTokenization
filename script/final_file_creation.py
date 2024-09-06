@@ -42,7 +42,7 @@ def write_to_excel(writer, df, start_row):
 
 def new_file_name(folder_path, batch_number):
     
-    return f'To_CYB_Batch_{batch_number}_{get_current_date()}.xlsx'
+    return f'To_CYB_Batch_{batch_number}_{get_current_date()}.csv'
 
 def get_creation_date():
     return datetime.now().strftime('%Y-%m-%d')
@@ -70,6 +70,8 @@ def main_template(folder_path,df,batch_number):
         'target_api': 'targetAPIVersion=1.211'
     }
 
+    empty_row = []
+
     field_names = [
         'paySubscriptionCreateService_run', 'ccAuthService_run', 'billTo_firstName', 
         'billTo_lastName', 'billTo_email', 'billTo_street1', 'billTo_city', 'billTo_state',
@@ -81,9 +83,11 @@ def main_template(folder_path,df,batch_number):
 
     footer_data = ['END', 'SUM=0.00']
 
-    return header_data, field_names, footer_data
+    return header_data, field_names, footer_data, empty_row
 
-def file_creation(header_data, field_names, footer_data, df, folder_path, batch_number):
+
+def file_creation(header_data, field_names, empty_row, footer_data, df, folder_path, batch_number):
+
     
     name = new_file_name(folder_path, batch_number)
 
@@ -92,10 +96,21 @@ def file_creation(header_data, field_names, footer_data, df, folder_path, batch_
 
     # Create DataFrames
     first_row_data = create_dataframe(list(header_data.values()))
+    second_row_data = create_dataframe(empty_row)
     third_row_data = create_dataframe(field_names)
     data_rows = df
     last_row_data = create_dataframe(footer_data, columns=[0, 1])
 
+    # Write to CSV
+    first_row_data.to_csv(save_file_path, index=False, header=False, mode='w')  # Write header data
+    second_row_data.to_csv(save_file_path, index=False, header=False, mode='a')  # Append field names
+    third_row_data.to_csv(save_file_path, index=False, header=False, mode='a')  # Append field names
+    data_rows.to_csv(save_file_path, index=False, header=False, mode='a')       # Append main data rows
+    last_row_data.to_csv(save_file_path, index=False, header=False, mode='a')   # Append footer data
+
+    
+
+"""
     # Write to Excel
     with pd.ExcelWriter(save_file_path, engine='openpyxl') as writer:
         write_to_excel(writer, first_row_data, start_row=0)
@@ -103,3 +118,5 @@ def file_creation(header_data, field_names, footer_data, df, folder_path, batch_
         write_to_excel(writer, data_rows, start_row=3)
         last_row_start = 3 + len(data_rows)
         write_to_excel(writer, last_row_data, start_row=last_row_start)
+
+ """       

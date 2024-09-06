@@ -28,8 +28,8 @@ def create_template_table():
 
 def copy_data_into_table(new_df, df):
     new_df['billTo_firstName'] = df['First Name']
-    new_df['paySubscriptionCreateService_run'] = 'TRUE'
-    new_df['ccAuthService_run'] = 'TRUE'
+    new_df['paySubscriptionCreateService_run'] = 'true'
+    new_df['ccAuthService_run'] = 'true'
     new_df['billTo_lastName'] = df['Last Name']
     new_df['billTo_email'] = df['Email']	
     new_df['billTo_street1'] = df['Street']	
@@ -78,7 +78,7 @@ def convert_payment_submethod(df):
 
 def drop_columns(df):
     df = df.drop(columns=['Donor Id','Title','Ethnic','Gender','City','State','Country','Home Phone','Work Phone',
-                          'Mobile Phone','Date of Birth','Last Pledge Amount',
+                          'Date of Birth','Last Pledge Amount',
                           'Last Cash Amount','Last Pledge Date','Last Cash Date','Pledge id',
                           'Pledge Date','Pledge Start Date','Pledge End Date','Donation Amount',
                           'Payment Method','Truncated CC',
