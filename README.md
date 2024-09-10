@@ -3,7 +3,7 @@
 The goal of this project is to streamline and automate the file preparation and data mapping process for tokenization, which is currently manual and time-consuming. By automating key steps, the process will become more efficient, reduce human errors, and improve overall workflow. This optimization will minimize manual interventions, ensure consistency, and expedite the preparation and updating of tokenization files, ultimately enhancing productivity and accuracy in data handling.
 
 
-Current Process:
+***Current Process***:
 1. Start with an Excel file (.xlsx) containing data for tokenization.
 2. Manually copy and paste data into a template file.
 3. Generate a batch ID for the file.
@@ -15,7 +15,7 @@ Current Process:
 9. Update the data in the database via SFTP.
 
 
-Optimized Process:
+***Optimized Process***:
 1. Automate steps 1-4 using Python.
 2. Send the file via the client portal.
 3. Receive the returned file.
