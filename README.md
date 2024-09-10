@@ -1,4 +1,5 @@
-**Purpose**: 
+***Purpose***: 
+
 The goal of this project is to streamline and automate the file preparation and data mapping process for tokenization, which is currently manual and time-consuming. By automating key steps, the process will become more efficient, reduce human errors, and improve overall workflow. This optimization will minimize manual interventions, ensure consistency, and expedite the preparation and updating of tokenization files, ultimately enhancing productivity and accuracy in data handling.
 
 
