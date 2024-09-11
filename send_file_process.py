@@ -28,7 +28,6 @@ def send_file_main():
 
             original_df.to_excel(os.path.join(folder_path, f'{file[:-5]}_{batch_number}.xlsx'), index=False) # save original file with batch number in name
 
-    
     print('Process complete.')
     
 
