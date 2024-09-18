@@ -21,12 +21,13 @@ def send_file_main():
             df = process_data_file.process_data_table(original_df)
 
             batch_number = create_file.batch_counter(folder_path) # get batch number
+            current_date = create_file.get_current_date()
 
             header_data, field_names, footer_data, empty_row = create_file.main_template(folder_path, df, batch_number) # reformat file
 
             create_file.file_creation(header_data,field_names, empty_row, footer_data, df, folder_path, batch_number) # create file with new format
 
-            original_df.to_excel(os.path.join(folder_path, f'{file[:-5]}_{batch_number}.xlsx'), index=False) # save original file with batch number in name
+            original_df.to_excel(os.path.join(folder_path, f'{file[:-5]}_{current_date}{batch_number}.xlsx'), index=False) # save original file with batch number in name
 
     print('Process complete.')
     
