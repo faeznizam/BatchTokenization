@@ -1,11 +1,11 @@
 import os
 import pandas as pd
 
-from script import helper_for_return_file
+from .helper_for_return_file import process_file, map_to_original_file
 
 
-def return_file_process_flow():
-    folder_path = r'C:\Users\mfmohammad\OneDrive - UNICEF\Documents\Codes\task_batch_tokenization\test_data'
+def return_file_process_flow(folder_path):
+    #folder_path = r'C:\Users\mfmohammad\OneDrive - UNICEF\Documents\Codes\task_batch_tokenization\test_data'
 
     batch_id_list = []
 
@@ -32,13 +32,13 @@ def return_file_process_flow():
 
         if send_file_path and return_file_path:
 
-            parsed_df = helper_for_return_file.process_file(return_file_path)
+            parsed_df = process_file(return_file_path)
 
-            helper_for_return_file.map_to_original_file(send_file_path, parsed_df, folder_path, send_file_name)
+            map_to_original_file(send_file_path, parsed_df, folder_path, send_file_name)
 
     print('Process Complete')
 
-        
+"""     
 if __name__ == '__main__':
     return_file_process_flow()
-            
+"""         
