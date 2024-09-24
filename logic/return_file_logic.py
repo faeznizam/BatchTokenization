@@ -2,9 +2,6 @@
 import os
 from .helper_for_return_file import process_file, map_to_original_file
 
-
-
-
 def return_file_process_flow(folder_path):
     
     batch_id_list = []
@@ -14,7 +11,7 @@ def return_file_process_flow(folder_path):
             return '\nFile has been Processed'
     
     for file in os.listdir(folder_path):
-        if not 'unicef_malaysia' in file and not 'reply.all' in file:
+        if not 'unicef_malaysia' in file:
             return '\nRequired file is not in the folder!'
  
 
