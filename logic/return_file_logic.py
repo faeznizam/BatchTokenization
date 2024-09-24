@@ -8,11 +8,11 @@ def return_file_process_flow(folder_path):
 
     for file in os.listdir(folder_path):
         if '_SF' in file:
-            return '\nFile has been Processed'
+            return '\nFile has already been Processed. Check your folder'
     
-    for file in os.listdir(folder_path):
-        if not 'unicef_malaysia' in file:
-            return '\nRequired file is not in the folder!'
+    #for file in os.listdir(folder_path):
+        #if not 'unicef_malaysia' in file:
+            #return '\nRequired file is not in the folder!'
  
 
     # get batch id into batch id list
