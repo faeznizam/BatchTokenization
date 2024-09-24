@@ -66,7 +66,7 @@ class MyApp(QWidget):
         folder_path = QFileDialog.getExistingDirectory(self, 'Select Folder')
         if folder_path:
             self.selected_folder = folder_path  # Store the selected folder path
-            self.text_display.append(f'Selected Folder: {self.selected_folder}')  # Append selected folder path to QTextEdit
+            self.text_display.append(f'\nSelected Folder: {self.selected_folder}')  # Append selected folder path to QTextEdit
             
             selected_item = self.combo.currentText()  # Get the selected item
             if selected_item in self.function_mapping:
@@ -75,13 +75,16 @@ class MyApp(QWidget):
     def process_cyb(self, folder_path):
         # Processing logic for "Prepare File For CYB"
         
-        send_file_process_flow(folder_path)
+        end_result = send_file_process_flow(folder_path)
+        self.text_display.append(end_result)
         
 
     def process_sf(self, folder_path):
         # Processing logic for "Remap To SF"
         
-        return_file_process_flow(folder_path)
+        end_result2 = return_file_process_flow(folder_path)
+        self.text_display.append(end_result2)
+        
         
 
 
