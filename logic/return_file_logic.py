@@ -1,13 +1,22 @@
+# import module
 import os
-import pandas as pd
-
 from .helper_for_return_file import process_file, map_to_original_file
 
 
-def return_file_process_flow(folder_path):
-    #folder_path = r'C:\Users\mfmohammad\OneDrive - UNICEF\Documents\Codes\task_batch_tokenization\test_data'
 
+
+def return_file_process_flow(folder_path):
+    
     batch_id_list = []
+
+    for file in os.listdir(folder_path):
+        if '_SF' in file:
+            return '\nFile has been Processed'
+    
+    for file in os.listdir(folder_path):
+        if not 'unicef_malaysia' in file and not 'reply.all' in file:
+            return '\nRequired file is not in the folder!'
+ 
 
     # get batch id into batch id list
     for file in os.listdir(folder_path):
@@ -36,7 +45,9 @@ def return_file_process_flow(folder_path):
 
             map_to_original_file(send_file_path, parsed_df, folder_path, send_file_name)
 
-    print('Process Complete')
+    return '\nProcess Completed!'
+
+
 
 """     
 if __name__ == '__main__':
